@@ -11,6 +11,12 @@ const routes = [
     name: "Create",
     component: () => import("@/views/Create")
   },
+  {
+    path: "/post/:id",
+    name: "Post",
+    props: true,
+    component: () => import("@/views/Post")
+  },
 ]
 
 export default createRouter({

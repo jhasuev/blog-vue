@@ -91,6 +91,10 @@ const store = createStore({
         return post
       })
     },
+
+    getComments(state) {
+      return state.comments
+    },
   },
 
   mutations: {
