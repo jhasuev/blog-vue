@@ -31,6 +31,12 @@ export default ({
     },
   },
 
+  mounted(){
+    if (!this.getPost) {
+      this.$router.push({ name: "Home" })
+    }
+  },
+
   methods: {
     ...mapActions([ 'addPostComment' ]),
 
