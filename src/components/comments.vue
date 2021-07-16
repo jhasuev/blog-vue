@@ -29,3 +29,9 @@ export default ({
   },
 })
 </script>
+
+<style scoped lang="scss">
+.card-text {
+  white-space: pre-line;
+}
+</style>

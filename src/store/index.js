@@ -2,82 +2,8 @@ import { createStore } from 'vuex'
 
 const store = createStore({
   state: {
-    posts: [
-      {
-        id: 1,
-        title: "заголовок 1",
-        excerpt: "краткое описание 1",
-        text: "полное описание 1",
-      },
-      {
-        id: 2,
-        title: "заголовок 2",
-        excerpt: "краткое описание 2",
-        text: "полное описание 2",
-      },
-      {
-        id: 3,
-        title: "заголовок 3",
-        excerpt: "краткое описание 3",
-        text: "полное описание 3",
-      },
-      {
-        id: 4,
-        title: "заголовок 1",
-        excerpt: "краткое описание 1",
-        text: "полное описание 1",
-      },
-      {
-        id: 5,
-        title: "заголовок 2",
-        excerpt: "краткое описание 2",
-        text: "полное описание 2",
-      },
-      {
-        id: 6,
-        title: "заголовок 3",
-        excerpt: "краткое описание 3",
-        text: "полное описание 3",
-      },
-      {
-        id: 7,
-        title: "заголовок 1",
-        excerpt: "краткое описание 1",
-        text: "полное описание 1",
-      },
-      {
-        id: 8,
-        title: "заголовок 2",
-        excerpt: "краткое описание 2",
-        text: "полное описание 2",
-      },
-      {
-        id: 9,
-        title: "заголовок 3",
-        excerpt: "краткое описание 3",
-        text: "полное описание 3",
-      },
-    ],
-    comments: [
-      {
-        id: 1,
-        postID: 1,
-        username: "Jamal",
-        text: "This is a comment...",
-      },
-      {
-        id: 2,
-        postID: 2,
-        username: "Jamal 2",
-        text: "This is a comment... 2",
-      },
-      {
-        id: 3,
-        postID: 1,
-        username: "Jamal 3",
-        text: "This is a comment... 3",
-      },
-    ],
+    posts: JSON.parse(localStorage.posts || '[]'),
+    comments: JSON.parse(localStorage.comments || '[]'),
   },
   
   getters: {
@@ -127,24 +53,38 @@ const store = createStore({
     REMOVE_POST_COMMENTS(state, postID) {
       state.comments = state.comments.filter(comment => comment.postID != postID)
     },
+
+    SAVE_POSTS({ posts }) {
+      localStorage.posts = JSON.stringify(posts)
+    },
+
+    SAVE_COMMENTS({ comments }) {
+      localStorage.comments = JSON.stringify(comments)
+    },
   },
 
   actions: {
     addPostComment({ commit }, comment) {
       commit("ADD_POST_COMMENT", comment)
+      commit("SAVE_COMMENTS")
     },
 
     addPost({ commit }, post) {
       commit("ADD_POST", post)
+      commit("SAVE_POSTS")
     },
 
     removeComment({ commit }, commentID) {
       commit("REMOVE_COMMENT", commentID)
+      commit("SAVE_COMMENTS")
     },
 
     removePost({ commit }, postID) {
       commit("REMOVE_POST", postID)
       commit("REMOVE_POST_COMMENTS", postID)
+      
+      commit("SAVE_POSTS")
+      commit("SAVE_COMMENTS")
     },
   },
 })
