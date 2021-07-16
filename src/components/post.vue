@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="mb-4  text-center">{{ post.title }}</h1>
-    <p>{{ post.text }}</p>
+    <p class="text">{{ post.text }}</p>
   </div>
 </template>
 
@@ -13,3 +13,9 @@ export default ({
   },
 })
 </script>
+
+<style scoped lang=scss>
+.text {
+  white-space: pre-line;
+}
+</style>
