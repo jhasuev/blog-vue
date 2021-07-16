@@ -4,8 +4,9 @@
     <div class="card-body">
       <p class="card-text">{{ comment.text }}</p>
     </div>
-    <div class="card-footer">
+    <div class="card-footer  d-flex align-items-center  justify-content-between">
       <small class="text-muted">Автор: <b>{{ comment.username }}</b></small>
+      <a href="javascript:" class="text-danger" @click="remove(comment.id)">Удалить</a>
     </div>
   </div>
   <div v-if="!comments.length" class="card">
@@ -16,10 +17,19 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default ({
   name: "Comments",
   props: {
     comments: { type: Array, default: () => [] },
+  },
+
+  methods: {
+    ...mapActions([ 'removeComment' ]),
+
+    remove(commentID) {
+      this.removeComment(commentID)
+    }
   },
 })
 </script>

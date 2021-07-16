@@ -109,6 +109,13 @@ const store = createStore({
       const id = state.posts.reduce((acc, post) => post.id > acc ? post.id : acc, 0) + 1
       state.posts.unshift({ id, ...post })
     },
+    
+    REMOVE_COMMENT(state, commentID) {
+      const commentIndex = state.comments.findIndex(comment => commentID == comment.id)
+      if (commentIndex >= 0) {
+        state.comments.splice(commentIndex, 1)
+      }
+    },
   },
 
   actions: {
@@ -117,8 +124,11 @@ const store = createStore({
     },
 
     addPost({ commit }, post) {
-      console.log(post)
       commit("ADD_POST", post)
+    },
+
+    removeComment({ commit }, commentID) {
+      commit("REMOVE_COMMENT", commentID)
     },
   },
 })
