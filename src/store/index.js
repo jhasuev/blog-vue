@@ -102,13 +102,24 @@ const store = createStore({
       // последний id + 1 = след id
       const id = state.comments.reduce((acc, comment) => comment.id > acc ? comment.id : acc, 0) + 1
       state.comments.push({ id, ...comment })
-    }
+    },
+    
+    ADD_POST(state, post) {
+      // последний id + 1 = след id
+      const id = state.posts.reduce((acc, post) => post.id > acc ? post.id : acc, 0) + 1
+      state.posts.unshift({ id, ...post })
+    },
   },
 
   actions: {
     addPostComment({ commit }, comment) {
       commit("ADD_POST_COMMENT", comment)
-    }
+    },
+
+    addPost({ commit }, post) {
+      console.log(post)
+      commit("ADD_POST", post)
+    },
   },
 })
 
