@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="mb-4  text-center">{{ post.title }}</h1>
+    <heading :text="post.title" />
     <p class="text">{{ post.text }}</p>
   </div>
 </template>

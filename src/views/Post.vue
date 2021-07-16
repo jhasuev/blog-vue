@@ -33,8 +33,9 @@ export default ({
 
   mounted(){
     if (!this.getPost) {
-      this.$router.push({ name: "Home" })
+      return this.$router.push({ name: "Home" })
     }
+    this.changeTitle(this.getPost.title)
   },
 
   methods: {

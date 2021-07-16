@@ -1,8 +1,6 @@
 <template>
-  <h1 class="text-center mb-4"> Посты </h1>
-
+  <heading text="Посты" />
   <posts :posts="getPosts" />
-
 </template>
 
 <script>

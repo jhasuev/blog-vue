@@ -1,6 +1,6 @@
 <template>
   <div v-if="!added">
-    <h3 class="mb-4 mt-5">Добавить пост</h3>
+    <heading text="Добавить пост" />
     <form @submit.prevent="onSubmit">
       <div class="mb-3">
         <label class="form-label">Название поста</label>
