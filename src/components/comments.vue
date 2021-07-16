@@ -9,6 +9,11 @@
       <small class="text-muted">Last updated 3 mins ago</small>
     </div>
   </div>
+  <div v-if="!comments.length" class="card">
+    <div class="card-body">
+      <p class="card-text  text-center">Нет комментариев...</p>
+    </div>
+  </div>
 </template>
 
 <script>
