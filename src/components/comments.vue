@@ -6,7 +6,7 @@
     </div>
     <div class="card-footer  d-flex align-items-center  justify-content-between">
       <small class="text-muted">Автор: <b>{{ comment.username }}</b></small>
-      <a href="javascript:" class="text-danger" @click="remove(comment.id)">Удалить</a>
+      <a href="javascript:" class="text-danger" @click="removeComment(comment.id)">Удалить</a>
     </div>
   </div>
   <div v-if="!comments.length" class="card">
@@ -26,10 +26,6 @@ export default ({
 
   methods: {
     ...mapActions([ 'removeComment' ]),
-
-    remove(commentID) {
-      this.removeComment(commentID)
-    }
   },
 })
 </script>
