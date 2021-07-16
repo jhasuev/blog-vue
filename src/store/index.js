@@ -98,9 +98,17 @@ const store = createStore({
   },
 
   mutations: {
+    ADD_POST_COMMENT(state, comment) {
+      // последний id + 1 = след id
+      const id = state.comments.reduce((acc, comment) => comment.id > acc ? comment.id : acc, 0) + 1
+      state.comments.push({ id, ...comment })
+    }
   },
 
   actions: {
+    addPostComment({ commit }, comment) {
+      commit("ADD_POST_COMMENT", comment)
+    }
   },
 })
 

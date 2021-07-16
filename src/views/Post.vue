@@ -1,12 +1,14 @@
 <template>
   <post :post="getPost" />
   <comments :comments="getPostComments" />
+  <commentsForm @addComment="addComment" />
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters, mapActions } from "vuex"
 import Post from "@/components/post"
 import Comments from "@/components/comments"
+import commentsForm from "@/components/comment-form"
 export default ({
   name: "Home",
   props: {
@@ -15,6 +17,7 @@ export default ({
   components: {
     Post,
     Comments,
+    commentsForm,
   },
   computed: {
     ...mapGetters([ 'getPosts', 'getComments' ]),
@@ -27,5 +30,14 @@ export default ({
       return this.getComments.filter(comment => this.id == comment.postID)
     },
   },
+
+  methods: {
+    ...mapActions([ 'addPostComment' ]),
+
+    addComment(comment) {
+      this.addPostComment({ ...comment, postID: Number(this.id) })
+    },
+  },
+
 })
 </script>
