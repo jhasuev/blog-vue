@@ -7,9 +7,9 @@ const routes = [
     component: () => import("@/views/Home")
   },
   {
-    path: "/posts",
-    name: "Posts",
-    component: () => import("@/views/Posts")
+    path: "/create",
+    name: "Create",
+    component: () => import("@/views/Create")
   },
 ]
 

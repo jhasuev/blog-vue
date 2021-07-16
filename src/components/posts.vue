@@ -33,6 +33,7 @@ export default ({
   },
 
   mounted(){
+    this.loadPostsIfNeeded()
     this.timer = setInterval(() => this.loadPostsIfNeeded(), 300);
   },
   

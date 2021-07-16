@@ -1,9 +1,9 @@
 <template>
-  Posts.vue
+  Create.vue
 </template>
 
 <script>
 export default ({
-  name: "Posts",
+  name: "Create",
 })
 </script>
