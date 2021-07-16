@@ -116,6 +116,17 @@ const store = createStore({
         state.comments.splice(commentIndex, 1)
       }
     },
+    
+    REMOVE_POST(state, postID) {
+      const postIndex = state.posts.findIndex(post => postID == post.id)
+      if (postIndex >= 0) {
+        state.posts.splice(postIndex, 1)
+      }
+    },
+    
+    REMOVE_POST_COMMENTS(state, postID) {
+      state.comments = state.comments.filter(comment => comment.postID != postID)
+    },
   },
 
   actions: {
@@ -129,6 +140,11 @@ const store = createStore({
 
     removeComment({ commit }, commentID) {
       commit("REMOVE_COMMENT", commentID)
+    },
+
+    removePost({ commit }, postID) {
+      commit("REMOVE_POST", postID)
+      commit("REMOVE_POST_COMMENTS", postID)
     },
   },
 })

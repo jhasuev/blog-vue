@@ -6,14 +6,23 @@
         <p class="card-text">{{ post.excerpt }}</p>
         <div class="d-flex justify-content-between align-items-center">
           <span> Комментариев: {{ post.commentsCount }} </span>
-          <button class="btn btn-primary" @click="read(post.id)">Читать</button>
+          <div>
+            <button class="btn btn-primary" @click="read(post.id)">Читать</button>
+            <a href="javascript:" class="text-danger  ms-3" @click="removePost(post.id)">Удалить</a>
+          </div>
         </div>
+      </div>
+    </div>
+    <div v-if="!getPosts.length" class="card  mb-3">
+      <div class="card-body">
+        <p class="card-text  text-center">Нет еще постов</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default ({
   name: "PostsList",
   props: {
@@ -38,6 +47,8 @@ export default ({
   },
   
   methods: {
+    ...mapActions([ 'removePost' ]),
+
     loadPostsIfNeeded(){
       const lastElement = this.$refs.posts.lastElementChild
       if (this.canShowMore(lastElement)) {
@@ -46,6 +57,8 @@ export default ({
     },
 
     canShowMore(el){
+      if(!el) return null
+
       const rect = el.getBoundingClientRect();
       const windowHeight = window.innerHeight || document.documentElement.clientHeight
       
