@@ -40,6 +40,7 @@ export default {
 
 <style scoped lang="scss">
   .nav-link {
+    text-align: center;
     cursor: pointer;
     opacity: .5;
     &.active {
