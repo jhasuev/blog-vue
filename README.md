@@ -1,5 +1,8 @@
 # blog-vue
 
+## DEMO
+https://jhasuev.github.io/blog-vue/dist/
+
 ## Project setup
 ```
 npm install
